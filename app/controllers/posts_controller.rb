@@ -21,6 +21,15 @@ class PostsController < ApplicationController
   def edit
   end
 
+  def search
+  query = params[:search_posts].presence && params[:search_posts][:query]
+
+  if query
+    @posts = Post.search_published(query)
+  end
+end
+
+
   # POST /posts
   # POST /posts.json
   def create
